@@ -1,0 +1,62 @@
+!pip install pandas fpdf
+
+from google.colab import files
+
+uploaded = files.upload()  
+
+import pandas as pd
+
+
+file_name = "sales_data - Sheet1.csv"  
+df = pd.read_csv(file_name)
+
+
+print(df.head())
+
+
+total_sales = df['Sales'].sum()
+average_sales = df['Sales'].mean()
+max_sale = df['Sales'].max()
+min_sale = df['Sales'].min()
+
+print(f"Total Sales: {total_sales}")
+print(f"Average Sale: {average_sales:.2f}")
+print(f"Maximum Sale: {max_sale}")
+print(f"Minimum Sale: {min_sale}")
+
+
+from fpdf import FPDF
+
+
+pdf = FPDF()
+pdf.add_page()
+
+pdf.set_font("Arial", "B", 16)
+pdf.cell(200, 10, "Automated Sales Report", ln=True, align="C")
+
+
+pdf.ln(10)
+
+# analysis
+pdf.set_font("Arial", "", 12)
+pdf.cell(200, 10, f"Total Sales: {total_sales}", ln=True)
+pdf.cell(200, 10, f"Average Sale: {average_sales:.2f}", ln=True)
+pdf.cell(200, 10, f"Maximum Sale: {max_sale}", ln=True)
+pdf.cell(200, 10, f"Minimum Sale: {min_sale}", ln=True)
+
+# Top 5 sales records
+pdf.ln(10)
+pdf.set_font("Arial", "B", 12)
+pdf.cell(200, 10, "Top 5 Sales Records:", ln=True)
+pdf.set_font("Arial", "", 12)
+top5 = df.sort_values(by='Sales', ascending=False).head(5)
+for index, row in top5.iterrows():
+    pdf.cell(200, 10, f"{row['Date']} | {row['Product']} | {row['Sales']}", ln=True)
+
+# Save PDF
+pdf_file_name = "sales_report.pdf"
+pdf.output(pdf_file_name)
+print(f"PDF report generated: {pdf_file_name}")
+
+from google.colab import files
+files.download("sales_report.pdf")
