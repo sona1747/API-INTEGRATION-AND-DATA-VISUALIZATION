@@ -29,3 +29,8 @@ The final plot is displayed in Google Colab and also saved as a jpeg file . Savi
 This project teaches several practical skills essential for modern Python development. It demonstrates how to connect Python programs to external data sources, handle JSON structures, perform data preprocessing, and generate visual insights using plots. It also strengthens understanding of libraries like requests for networking and matplotlib for visualization. In addition, performing this project in Google Colab helps beginners learn how to run Python code online without installing software on their computer.
 
 Overall, this task successfully illustrates the full workflow of a real-world data analytics project: data retrieval → data processing → visualization → reporting. The student not only gains programming skills but also learns how APIs power modern applications like weather apps, stock tracking systems, and smart dashboards. Completing this project shows the ability to build data-driven tools using Python and prepares the student for more advanced tasks such as automation, machine learning, and dashboard development.
+
+
+OUTPUT :
+
+![Image](https://github.com/user-attachments/assets/b71296cd-048e-4f19-912a-00fe3ffac19e)
